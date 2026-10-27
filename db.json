@@ -1,0 +1,25 @@
+{
+  "bugs": [
+    {
+      "id": 1,
+      "title": "Login page crash",
+      "description": "Application crashes after login",
+      "severity": "High",
+      "status": "Open"
+    },
+    {
+      "id": 2,
+      "title": "Navbar alignment",
+      "description": "Navbar items overlap on mobile",
+      "severity": "Low",
+      "status": "In Progress"
+    },
+    {
+      "id": 3,
+      "title": "Wrong API response",
+      "description": "Profile endpoint returns incorrect data",
+      "severity": "Medium",
+      "status": "Closed"
+    }
+  ]
+}

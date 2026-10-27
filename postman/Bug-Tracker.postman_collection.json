@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "Bug Tracker API",
+    "description": "Collection de vérification pour l'API json-server du laboratoire SED2515.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Lister les bogues",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/bugs"
+      }
+    },
+    {
+      "name": "Obtenir un bogue",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/bugs/1"
+      }
+    },
+    {
+      "name": "Créer un bogue",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Bogue de test Postman\",\n  \"description\": \"Créé depuis la collection du laboratoire\",\n  \"severity\": \"High\",\n  \"status\": \"Open\"\n}"
+        },
+        "url": "{{baseUrl}}/bugs"
+      }
+    },
+    {
+      "name": "Mettre à jour un bogue",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Login page crash\",\n  \"description\": \"Application crashes after login\",\n  \"severity\": \"High\",\n  \"status\": \"In Progress\"\n}"
+        },
+        "url": "{{baseUrl}}/bugs/1"
+      }
+    },
+    {
+      "name": "Supprimer un bogue",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/bugs/3"
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001"
+    }
+  ]
+}

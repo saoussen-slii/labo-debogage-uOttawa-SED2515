@@ -15,8 +15,8 @@ export function BugListPage() {
   const [status, setStatus] = useState<"All" | BugStatus>("All");
 
   useEffect(() => {
-    dispatch(fetchBugs);
-  }, [dispatch, bugs]);
+    dispatch(fetchBugs());
+  }, [dispatch]);
 
   const visibleBugs = useMemo(() => {
     const query = search.trim().toLowerCase();

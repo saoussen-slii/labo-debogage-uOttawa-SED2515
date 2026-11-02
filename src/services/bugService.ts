@@ -3,7 +3,7 @@ import type { Bug, BugDraft } from "../types/bug";
 
 export async function fetchBugsFromApi(): Promise<Bug[]> {
   const response = await bugsApi.getAll();
-  return response.data.bugs;
+  return response.data;
 }
 
 export async function fetchBugById(id: number): Promise<Bug> {
@@ -20,7 +20,8 @@ export async function updateBugOnApi(bug: Bug): Promise<Bug> {
   const response = await bugsApi.update(bug.id, {
     title: bug.title,
     description: bug.description,
-    severity: bug.severity as BugDraft["severity"],
+    severity: bug.severity,
+    status: bug.status,
   });
   return response.data;
 }

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { BugForm } from "../components/BugForm";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { clearSelectedBug, fetchBug, updateBug } from "../redux/bugsSlice";
-import type { Bug, BugDraft } from "../types/bug";
+import type { BugDraft } from "../types/bug";
 
 export function BugEditPage() {
   const { id } = useParams();
@@ -22,16 +22,25 @@ export function BugEditPage() {
     };
   }, [dispatch, id]);
 
-  function handleSubmit(values: BugDraft) {
-    const payload = {
-      title: values.title,
-      description: values.description,
-      severity: values.severity,
-      status: values.status,
-    } as Bug;
+  async function handleSubmit(values: BugDraft) {
+    if (!id) {
+      return;
+    }
 
-    dispatch(updateBug(payload));
-    navigate("/");
+    try {
+      await dispatch(
+        updateBug({
+          id: Number(id),
+          title: values.title,
+          description: values.description,
+          severity: values.severity,
+          status: values.status,
+        })
+      ).unwrap();
+      navigate("/");
+    } catch {
+      // L'erreur est déjà affichée via le store Redux.
+    }
   }
 
   if (loading && !selectedBug) {

@@ -6,7 +6,7 @@ export interface Bug {
   id: number;
   title: string;
   description: string;
-  severity: string;
+  severity: BugSeverity;
   status: BugStatus;
 }
 

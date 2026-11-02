@@ -16,9 +16,13 @@ export function BugCreatePage() {
   const navigate = useNavigate();
   const { saving, error } = useAppSelector((state) => state.bugs);
 
-  function handleSubmit(values: BugDraft) {
-    dispatch(createBug(values));
-    navigate("/");
+  async function handleSubmit(values: BugDraft) {
+    try {
+      await dispatch(createBug(values)).unwrap();
+      navigate("/");
+    } catch {
+      // L'erreur est déjà affichée via le store Redux.
+    }
   }
 
   return (

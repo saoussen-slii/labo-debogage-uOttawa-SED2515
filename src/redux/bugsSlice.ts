@@ -85,16 +85,13 @@ const bugsSlice = createSlice({
         state.loading = false;
         state.error = action.error.message ?? "Impossible de charger le bogue.";
       })
-      .addCase(createBug.pending, (state, action) => {
+      .addCase(createBug.pending, (state) => {
         state.saving = true;
         state.error = null;
-        state.bugs.push({
-          ...action.meta.arg,
-          id: Date.now(),
-        });
       })
-      .addCase(createBug.fulfilled, (state) => {
+      .addCase(createBug.fulfilled, (state, action) => {
         state.saving = false;
+        state.bugs.push(action.payload);
       })
       .addCase(createBug.rejected, (state, action) => {
         state.saving = false;
@@ -122,7 +119,7 @@ const bugsSlice = createSlice({
       })
       .addCase(deleteBug.fulfilled, (state, action) => {
         state.loading = false;
-        state.bugs.filter((bug) => bug.id !== action.payload);
+        state.bugs = state.bugs.filter((bug) => bug.id !== action.payload);
       })
       .addCase(deleteBug.rejected, (state, action) => {
         state.loading = false;

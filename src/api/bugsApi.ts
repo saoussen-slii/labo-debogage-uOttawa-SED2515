@@ -3,7 +3,7 @@ import type { Bug, BugDraft } from "../types/bug";
 
 export const bugsApi = {
   getAll() {
-    return apiClient.get("/bugs-list");
+    return apiClient.get<Bug[]>("/bugs");
   },
 
   getById(id: number) {
@@ -15,7 +15,7 @@ export const bugsApi = {
   },
 
   update(id: number, payload: Partial<BugDraft>) {
-    return apiClient.get<Bug>(`/bugs/${id}`, { data: payload });
+    return apiClient.put<Bug>(`/bugs/${id}`, payload);
   },
 
   remove(id: number) {
